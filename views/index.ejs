@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/light.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="WebPilot provides fast AI search and quality writing tools. Also offers APIs, GPTs support, and browser extensions for better content creation and easy use.">
@@ -19,16 +20,21 @@
     <link rel="canonical" href="https://www.webpilot.ai/" />
     <meta name="keywords" content="WebPilot, AI, Search, Write">
     <title>WebPilot Article Portal</title>
-    <link rel="icon" href="/light.ico">
     <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
     <header>
-        <h1>Welcome to My Express App!</h1>
+        <h1>WebPilot favorite article list</h1>
     </header>
     <main>
-        <!-- Your content goes here -->
+        <ul>
+            <% articles.forEach(function(article){ %>
+                <li>
+                    <a href="<%= article.url %>"><%= article.title %></a>
+                </li>
+            <% }); %>
+        </ul>
     </main>
     <footer>
         <!-- Your footer content goes here -->
