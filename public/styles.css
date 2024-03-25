@@ -41,6 +41,11 @@ h3 {
     background-size: cover;
 }
 
+
+.navbar .right {
+    display: flex;
+}
+
 .navbar a {
     color: #646cff;
     text-decoration: none;

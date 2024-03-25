@@ -3,13 +3,24 @@ const axios = require('axios');
 const ejs = require('ejs');
 const Markdown = require('markdown-it');
 const hljs = require('highlight.js');
-const app = express();
+var i18n = require('i18n');
 const mock_article_list = require('./mock/data.js');
+
+// config
+const app = express();
+i18n.configure({
+    locales:['en', 'zh'],
+    directory: __dirname + '/locales',
+    defaultLocale: 'zh',
+    cookie: 'lang',
+});
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(i18n.init); 
 
-// 门户路由
+
+// index
 app.get('/', (req, res) => {
     //   const response = await axios.get(`https://dev.webpiloteai.com/articles/${id}`);
     const articles = [
@@ -21,7 +32,7 @@ app.get('/', (req, res) => {
     res.render('index', { articles });
 });
 
-// 文章详情路由
+// article
 app.get('/article/:id', async (req, res) => {
     const { id } = req.params;
     //   const response = await axios.get(`https://dev.webpiloteai.com/articles/${id}`);
@@ -39,6 +50,12 @@ app.get('/article/:id', async (req, res) => {
         },
     }).render(article.content);
     res.render('article', { article });
+});
+
+// lang
+app.get('/lang/:lang', (req, res) => {
+    res.cookie('lang', req.params.lang, { maxAge: 900000, httpOnly: true });
+    res.redirect('back');
 });
 
 app.listen(3000, () => {
