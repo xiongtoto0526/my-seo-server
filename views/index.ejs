@@ -16,6 +16,12 @@
                 background-color: #f0f0f0;
             }
 
+            main .index-title {
+                background-color: #fff;
+                padding: 10px;
+                text-align: center;
+            }
+
             main ul {
                 display: flex;
                 flex-wrap: wrap;
@@ -57,7 +63,7 @@
 <body>
     <%- include('header') %>
         <main>
-            <h1> Favorite Article List</h1>
+            <p class="index-title"><%= __('page.home.hot') %></p>
             <ul>
                 <% articles.forEach(function(article){ %>
                     <li>

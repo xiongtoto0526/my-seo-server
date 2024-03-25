@@ -3,6 +3,9 @@
     "article": {
       "title": "제목",
       "content": "내용"
+    },
+    "home": {
+      "hot": "가장 인기있는 글"
     }
   }
 }

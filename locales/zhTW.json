@@ -3,6 +3,9 @@
     "article": {
       "title": "標題",
       "content": "內容"
+    },
+    "home": {
+      "hot": "最熱門的文章"
     }
   }
 }

@@ -3,6 +3,9 @@
     "article": {
       "title": "Titre",
       "content": "Contenu"
+    },
+    "home": {
+      "hot": "Les articles les plus populaires"
     }
   }
 }

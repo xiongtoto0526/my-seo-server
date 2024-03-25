@@ -1,8 +1,11 @@
 {
-	"page": {
-		"article": {
-			"title": "標題",
-			"content": "内容"
-		}
-	}
+  "page": {
+    "article": {
+      "title": "標題",
+      "content": "内容"
+    },
+    "home": {
+      "hot": "最も人気のある記事"
+    }
+  }
 }

@@ -11,21 +11,21 @@ var fs = require('fs');
  */
 
 const value_input = {  
-  "deDE": "Inhalt",  
-  "enUS": "Content",  
-  "esES": "Contenido",  
-  "frFR": "Contenu",  
-  "itIT": "Contenuto",  
-  "jaJP": "内容",  
-  "koKR": "내용",  
-  "nlNL": "Inhoud",  
-  "ptBR": "Conteúdo",  
-  "ruRU": "Содержание",  
-  "zhCN": "内容",  
-  "zhTW": "內容"  
+  "deDE": "Die heißesten Artikel",  
+  "enUS": "Most popular articles",  
+  "esES": "Los artículos más populares",  
+  "frFR": "Les articles les plus populaires",  
+  "itIT": "Gli articoli più popolari",  
+  "jaJP": "最も人気のある記事",  
+  "koKR": "가장 인기있는 글",  
+  "nlNL": "De meest populaire artikels",  
+  "ptBR": "Os artigos mais populares",  
+  "ruRU": "Самые популярные статьи",  
+  "zhCN": "最热门的文章",  
+  "zhTW": "最熱門的文章"  
 }
 
-const key_input = "page.article.content"  // reset it with the key you want to add
+const key_input = "page.home.hot"  // reset it with the key you want to add
 
 const projectDirectory = process.cwd();
 const modulePath = path.join(projectDirectory, './locales');

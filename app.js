@@ -6,31 +6,40 @@ const hljs = require('highlight.js');
 var i18n = require('i18n');
 const _ = require('lodash');
 var cookieParser = require('cookie-parser');
+const app = express();
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(cookieParser());
 
-// data
+
+// i18n config
 let html = '';
 const mock_article_list = require('./mock/data.js');
 const ALL_LANG = require('./constants/i18n.js');
 ALL_LANG.forEach(ele => {
     html += `<a href="/lang/${ele.key}">${ele.value}</a>`
 })
-
-// config
-const app = express();
 i18n.configure({
     locales: ALL_LANG.map(ele => ele.key),
     directory: __dirname + '/locales',
     defaultLocale: 'enUS',
     cookie: 'lang',
 });
-
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
 app.use(i18n.init);
-app.use(cookieParser());
+
+function i18nMiddleware(req, res, next) {
+    res.locals.__ = function (key) {
+        const i18n_data = i18n.getCatalog(req.getLocale());
+        return _.get(i18n_data, key);
+    };
+    var lang = req.cookies.lang || 'en-US';
+    i18n.setLocale(req, lang);
+    next();
+}
+app.use(i18nMiddleware);
 
 
-// index
+// router: index
 app.get('/', (req, res) => {
     //   const response = await axios.get(`https://dev.webpiloteai.com/articles/${id}`);
     const articles = [
@@ -39,19 +48,11 @@ app.get('/', (req, res) => {
         { title: 'Article 3', url: '/article/id3' },
         // ...
     ];
-    res.render('index', { articles });
+    res.render('index', { articles, html });
 });
 
-// article
+// router: article
 app.get('/article/:id', async (req, res) => {
-    // 支持嵌套key
-    res.locals.__ = function(key) {
-        const i18n_data = i18n.getCatalog(req.getLocale());
-        return _.get(i18n_data, key);
-    };
-    var lang = req.cookies.lang || 'en-US';
-    i18n.setLocale(req, lang);
-
     // 获取文章
     const { id } = req.params;
     //   const response = await axios.get(`https://dev.webpiloteai.com/articles/${id}`);
@@ -73,7 +74,7 @@ app.get('/article/:id', async (req, res) => {
     res.render('article', { article, html });
 });
 
-// lang
+// router: lang
 app.get('/lang/:lang', (req, res) => {
     res.cookie('lang', req.params.lang, { maxAge: 900000, httpOnly: true });
     res.redirect('back');

@@ -1,8 +1,11 @@
 {
-	"page": {
-		"article": {
-			"title": "标题",
-			"content": "内容"
-		}
-	}
+  "page": {
+    "article": {
+      "title": "标题",
+      "content": "内容"
+    },
+    "home": {
+      "hot": "最热门的文章"
+    }
+  }
 }
