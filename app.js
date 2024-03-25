@@ -4,20 +4,30 @@ const ejs = require('ejs');
 const Markdown = require('markdown-it');
 const hljs = require('highlight.js');
 var i18n = require('i18n');
+const _ = require('lodash');
+var cookieParser = require('cookie-parser');
+
+// data
+let html = '';
 const mock_article_list = require('./mock/data.js');
+const ALL_LANG = require('./constants/i18n.js');
+ALL_LANG.forEach(ele => {
+    html += `<a href="/lang/${ele.key}">${ele.value}</a>`
+})
 
 // config
 const app = express();
 i18n.configure({
-    locales:['en', 'zh'],
+    locales: ALL_LANG.map(ele => ele.key),
     directory: __dirname + '/locales',
-    defaultLocale: 'zh',
+    defaultLocale: 'enUS',
     cookie: 'lang',
 });
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(i18n.init); 
+app.use(i18n.init);
+app.use(cookieParser());
 
 
 // index
@@ -34,10 +44,21 @@ app.get('/', (req, res) => {
 
 // article
 app.get('/article/:id', async (req, res) => {
+    // 支持嵌套key
+    res.locals.__ = function(key) {
+        const i18n_data = i18n.getCatalog(req.getLocale());
+        return _.get(i18n_data, key);
+    };
+    var lang = req.cookies.lang || 'en-US';
+    i18n.setLocale(req, lang);
+
+    // 获取文章
     const { id } = req.params;
     //   const response = await axios.get(`https://dev.webpiloteai.com/articles/${id}`);
     let temp_article = JSON.parse(JSON.stringify(mock_article_list))
     const article = temp_article.find(article => article.id == id);
+
+    // 转换为html
     article.content = Markdown({
         highlight: (str, lang) => {
             const code = lang && hljs.getLanguage(lang)
@@ -49,7 +70,7 @@ app.get('/article/:id', async (req, res) => {
             return `<pre class="hljs"><code>${code}</code></pre>`;
         },
     }).render(article.content);
-    res.render('article', { article });
+    res.render('article', { article, html });
 });
 
 // lang

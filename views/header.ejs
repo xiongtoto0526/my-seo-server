@@ -18,7 +18,7 @@
                 </svg>
             </a>
         </div>
-        <div id="i18nModal" style="margin-left:28px;">
+        <div id="i18nButton" style="margin-left:28px;">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M6.99967 0.342773C3.31767 0.342773 0.333008 3.32744 0.333008 7.00943C0.333008 10.6914 3.31767 13.6761 6.99967 13.6761C10.6817 13.6761 13.6663 10.6914 13.6663 7.00943C13.6663 3.32744 10.6817 0.342773 6.99967 0.342773ZM6.99967 1.67611C7.87967 1.67611 8.84633 3.69744 8.99366 6.34077L5.01367 6.34877C5.16033 3.70544 6.11967 1.67611 6.99967 1.67611ZM4.64567 2.21144C4.07233 3.32678 3.76567 4.80544 3.69167 6.34411L1.70502 6.33811C1.90368 4.52144 3.127 2.99744 4.64567 2.21144ZM9.357 2.21478C10.8757 3.00078 12.0677 4.4821 12.2977 6.34877L10.3117 6.34277C10.249 4.74277 9.895 3.33611 9.357 2.21478ZM1.709 7.67876L3.695 7.6621C3.769 9.20076 4.07766 10.7048 4.64833 11.8081C3.05367 11.0088 1.93834 9.44409 1.709 7.67876ZM5.00301 7.68409L8.983 7.67543C8.83634 10.3181 7.87967 12.3428 6.99967 12.3428C6.11967 12.3428 5.14967 10.3274 5.00301 7.68409ZM10.315 7.67744L12.2923 7.67144C12.063 9.43744 10.9483 11.0148 9.35434 11.8008C9.94634 10.5768 10.241 9.2161 10.315 7.67744Z"
@@ -35,10 +35,31 @@
             <a target="_blank" href="https://www.webpilot.ai/developer/passport/signin">API</a>
         </div>
     </div>
+
+    <!-- i18nModal -->
+    <div id="i18nModal" class="modal">
+        <div class="modal-content">
+            <span class="i18nclose"></span>
+            <%- html %>
+        </div>
+    </div>
+
     <script>
         var modal = document.getElementById("WpModal");
         var btn = document.getElementById("WpMenu");
         var span = document.getElementsByClassName("close")[0];
+
+        var i18nModal = document.getElementById("i18nModal");
+        var i18nBtn = document.getElementById("i18nButton");
+        var i18nSpan = document.getElementsByClassName("i18nclose")[0];
+
+        i18nBtn.onclick = function () {
+            i18nModal.style.display = "block";
+        }
+        i18nSpan.onclick = function () {
+            i18nModal.style.display = "none";
+        }
+
 
         btn.onclick = function () {
             modal.style.display = "block";
@@ -51,6 +72,9 @@
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+            if (event.target == i18nModal) {
+                i18nModal.style.display = "none";
             }
         }
     </script>

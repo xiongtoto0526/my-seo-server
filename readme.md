@@ -19,3 +19,7 @@ express + ejs
 
 # ide
 - for vscode : <code>npm install -g nodemon</code> (js-hot-load) 
+
+# i18n
+- gen:
+<code>npm run gen</code> (This will helps you generate new word to update all xxx.json quickly. For more usage, go to scripts/gen.js )
