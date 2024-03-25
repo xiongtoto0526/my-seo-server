@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
     const articles = [
         { title: 'Article 1', url: '/article/id1' },
         { title: 'Article 2', url: '/article/id2' },
+        { title: 'Article 3', url: '/article/id3' },
         // ...
     ];
     res.render('index', { articles });

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/light.ico">
+    <link rel="icon" href="/light.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="WebPilot provides fast AI search and quality writing tools. Also offers APIs, GPTs support, and browser extensions for better content creation and easy use.">
@@ -21,6 +21,63 @@
     <meta name="keywords" content="WebPilot, AI, Search, Write">
     <title>WebPilot Article Portal</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            flex: 0 0 calc(33.3333% - 20px);
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            transition: box-shadow 0.3s;
+        }
+
+        li:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        li a {
+            display: inline-block;
+            width: 100%;
+            height: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            color: #007BFF;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,9 +88,11 @@
         <ul>
             <% articles.forEach(function(article){ %>
                 <li>
-                    <a href="<%= article.url %>"><%= article.title %></a>
+                    <a href="<%= article.url %>">
+                        <%= article.title %>
+                    </a>
                 </li>
-            <% }); %>
+                <% }); %>
         </ul>
     </main>
     <footer>

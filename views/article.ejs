@@ -6,16 +6,16 @@
     <link rel="icon" href="/light.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="WebPilot provides fast AI search and quality writing tools. Also offers APIs, GPTs support, and browser extensions for better content creation and easy use.">
-    <meta property="og:title" content="WebPilot: Fast Search & Quality Writing with AI, APIs & More" />
+        content="<%= article.description %>">
+    <meta property="og:title" content="<%= article.title %>" />
     <meta property="og:description"
-        content="Discover how WebPilot's fast AI search, quality writing tools, APIs, and browser extensions can transform your content creation and simplify integration.">
+        content="<%= article.description %>">
     <meta property="og:image" content="https://www.webpilot.ai/Frame.svg" />
     <meta property="og:url" content="https://www.webpilot.ai" />
-    <meta name="twitter:card" content="WebPilot: Fast Search & Quality Writing with AI, APIs & More">
-    <meta name="twitter:title" content="WebPilot: Fast Search & Quality Writing with AI, APIs & More">
+    <meta name="twitter:card" content="<%= article.title %>">
+    <meta name="twitter:title" content="<%= article.title %>">
     <meta name="twitter:description"
-        content="Use WebPilot for quick AI search, top writing tools, APIs, and browser extensions. Upgrade your content creation and integration easily.">
+        content="<%= article.description %>">
     <meta name="twitter:image" content="https://www.webpilot.ai/Frame.svg">
     <link rel="canonical" href="https://www.webpilot.ai/" />
     <meta name="keywords" content="<%= article.keywords %>">
@@ -25,24 +25,56 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    .navbar {
+        background-color: #333;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        align-items: center;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+    .article-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
     .article-title {
-        color: red;
-        text-align: center;
-        margin-top: 20px;
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
     }
 
     .article-content {
-        color: blue;
-        text-align: center;
-        margin-top: 20px;
+        font-size: 1em;
+        color: #666;
+        line-height: 1.6;
     }
 </style>
 
 <body>
-    <h1 class="article-title">
-        <%= article.title %>
-    </h1>
-    <p class="article-content">
-        <%= article.content %>
-    </p>
+    <div class="navbar">
+        <a href="/">Home</a>
+    </div>
+    <div class="article-container">
+        <h1 class="article-title">
+            <%= article.title %>
+        </h1>
+        <p class="article-content">
+            <%= article.content %>
+        </p>
+    </div>
 </body>
