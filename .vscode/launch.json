@@ -4,13 +4,21 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "nodemon Launch appJs",
             "skipFiles": [
                 "<node_internals>/**"
             ],
+            // "env": {"NVM_DIR": "/Users/xmaster/.nvm"},  // replace with your path
+            "restart": true,
+            "runtimeExecutable": "nodemon",  // replace with your path
+            // "runtimeArgs": [
+            //     "--exec",
+            //     "/Users/xmaster/.nvm/versions/node/v18.17.0/bin/node"  // replace with your path
+            // ],
             "program": "${workspaceFolder}/app.js"
         }
     ]

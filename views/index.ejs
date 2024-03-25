@@ -2,102 +2,75 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/light.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="WebPilot provides fast AI search and quality writing tools. Also offers APIs, GPTs support, and browser extensions for better content creation and easy use.">
-    <meta property="og:title" content="WebPilot: Fast Search & Quality Writing with AI, APIs & More" />
-    <meta property="og:description"
-        content="Discover how WebPilot's fast AI search, quality writing tools, APIs, and browser extensions can transform your content creation and simplify integration.">
-    <meta property="og:image" content="https://www.webpilot.ai/Frame.svg" />
-    <meta property="og:url" content="https://www.webpilot.ai" />
-    <meta name="twitter:card" content="WebPilot: Fast Search & Quality Writing with AI, APIs & More">
-    <meta name="twitter:title" content="WebPilot: Fast Search & Quality Writing with AI, APIs & More">
-    <meta name="twitter:description"
-        content="Use WebPilot for quick AI search, top writing tools, APIs, and browser extensions. Upgrade your content creation and integration easily.">
-    <meta name="twitter:image" content="https://www.webpilot.ai/Frame.svg">
-    <link rel="canonical" href="https://www.webpilot.ai/" />
-    <meta name="keywords" content="WebPilot, AI, Search, Write">
-    <title>WebPilot Article Portal</title>
-    <link rel="stylesheet" href="/styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
+    <%- include('meta') %>
+        <meta name="description"
+            content="WebPilot provides fast AI search and quality writing tools. Also offers APIs, GPTs support, and browser extensions for better content creation and easy use.">
+        <meta name="keywords" content="WebPilot, AI, Search, Write">
+        <title>WebPilot Article Portal</title>
+        <link rel="stylesheet" href="/styles.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
+            main ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 0;
+                list-style-type: none;
+            }
 
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+            main li {
+                flex: 0 0 calc(33.3333% - 20px);
+                background-color: white;
+                margin-bottom: 10px;
+                padding: 20px;
+                border-radius: 4px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                transition: box-shadow 0.3s;
+            }
 
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 0;
-            list-style-type: none;
-        }
+            main li:hover {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            }
 
-        li {
-            flex: 0 0 calc(33.3333% - 20px);
-            background-color: white;
-            margin-bottom: 10px;
-            padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            transition: box-shadow 0.3s;
-        }
+            main li a {
+                display: inline-block;
+                width: 100%;
+                height: 20px;
+                text-decoration: none;
+                color: #007BFF;
+                font-weight: bold;
+            }
 
-        li:hover {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-        }
-
-        li a {
-            display: inline-block;
-            width: 100%;
-            height: 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        li a:hover {
-            color: #007BFF;
-        }
-    </style>
+            main li a:hover {
+                color: #007BFF;
+            }
+        </style>
 </head>
 
 <body>
-    <header>
-        <h1>WebPilot favorite article list</h1>
-    </header>
-    <main>
-        <ul>
-            <% articles.forEach(function(article){ %>
-                <li>
-                    <a href="<%= article.url %>">
-                        <%= article.title %>
-                    </a>
-                </li>
-                <% }); %>
-        </ul>
-    </main>
-    <footer>
-        <!-- Your footer content goes here -->
-    </footer>
+    <%- include('header') %>
+        <main>
+            <h1> Favorite Article List</h1>
+            <ul>
+                <% articles.forEach(function(article){ %>
+                    <li>
+                        <a href="<%= article.url %>">
+                            <%= article.title %>
+                        </a>
+                    </li>
+                    <% }); %>
+            </ul>
+        </main>
+        <footer>
+            <!-- Your footer content goes here -->
+        </footer>
 </body>
 
 </html>
