@@ -130,17 +130,22 @@ main {
     width: 100%;
     color: #646cff;
     text-decoration: none;
-    margin: 10px !important;
+    padding: 10px;
+    margin: 0 !important;
+}
+
+.modal-content a:hover {
+    background-color: #f7f7f7;
 }
 
 @keyframes animatetop {
     from {
-        top: -200px;
+        transform: scale(0.2);
         opacity: 0
     }
 
     to {
-        top: 0;
+        transform: scale(1);
         opacity: 1
     }
 }
