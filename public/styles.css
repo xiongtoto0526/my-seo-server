@@ -86,8 +86,7 @@ a:hover {
 /* main style */
 main {
     max-width: 1000px;
-    margin: 0 auto;
-    margin-top: 45px;
+    margin: 50px auto;
     padding: 20px;
 }
 
