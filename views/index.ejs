@@ -17,45 +17,91 @@
             }
 
             main .index-title {
-                background-color: #fff;
+                margin: 10px;
                 padding: 10px;
+                background-color: #fff;
                 text-align: center;
             }
 
             main ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                padding: 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
                 list-style-type: none;
+                padding: 0;
             }
 
             main li {
-                flex: 0 0 calc(33.3333% - 20px);
-                background-color: white;
-                margin-bottom: 10px;
+                position: relative;
+                box-sizing: border-box;
+                margin: 10px;
                 padding: 20px;
+                height: 150px;
+                background-color: white;
                 border-radius: 4px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 box-sizing: border-box;
                 transition: box-shadow 0.3s;
+                border-bottom: 8px solid #ADADAD;
+            }
+
+            main li:nth-child(4n+1) {
+                border-bottom-color: #FDF322;
+            }
+
+            main li:nth-child(4n+2) {
+                border-bottom-color: #FF985E;
+            }
+
+            main li:nth-child(4n+3) {
+                border-bottom-color: #79ED58
+            }
+
+            main li:nth-child(4n) {
+                border-bottom-color: #6A85FF
             }
 
             main li:hover {
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
 
             main li a {
                 display: inline-block;
+                height: 120px;
                 width: 100%;
-                height: 20px;
                 text-decoration: none;
-                color: #007BFF;
-                font-weight: bold;
+                color: black;
             }
 
-            main li a:hover {
-                color: #007BFF;
+
+            main li .pick .title {
+                font-weight: 700;
+                font-size: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+
+            main li .pick .snippet {
+                margin-top: 10px;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+
+            main li .pick .footer {
+                position: absolute;
+                bottom: 10px;
+                width: calc(100% - 40px);
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+                font-size: 12px;
+                box-sizing: border-box;
+                color: #ADADAD;
             }
         </style>
 </head>
@@ -63,20 +109,49 @@
 <body>
     <%- include('header') %>
         <main>
-            <h1 class="index-title"><%= __('page.home.hot') %></h1>
+            <h1 class="index-title">
+                <%= __('page.home.hot') %>
+            </h1>
             <ul>
                 <% articles.forEach(function(article){ %>
                     <li>
-                        <a href="<%= article.url %>">
-                            <%= article.title %>
+                        <a class="pick" href="https://www.webpilot.ai/writeDetail/<%= article.id %>">
+                            <div class="title">
+                                <%= article.title %>
+                            </div>
+                            <div class="snippet">
+                                <%= article.snippet %>...
+                            </div>
+                            <div class="footer">
+                                <div>
+                                    <%= article.character_num %>
+                                </div>
+                                <div>
+                                    <%= article.create_time %>
+                                </div>
+                            </div>
                         </a>
                     </li>
                     <% }); %>
             </ul>
+            <div style="text-align: center">
+                <a id="more-link" href="/?page=1">More ...</a>
+            </div>
         </main>
         <footer>
             <!-- Your footer content goes here -->
         </footer>
 </body>
+
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var page = Number(urlParams.get('page')) || 1;
+    document.getElementById('more-link').addEventListener('click', function (e) {
+        e.preventDefault();
+        page++;
+        this.href = '/?page=' + page;
+        window.location.href = this.href;
+    });
+</script>
 
 </html>

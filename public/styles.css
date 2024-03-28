@@ -17,6 +17,13 @@ h3 {
     font-size: 1em;
 }
 
+a {
+    color: #646cff;
+}
+
+a:hover {
+    cursor: pointer;
+}
 /* navbar style */
 
 .navbar {
@@ -31,6 +38,7 @@ h3 {
     font-size: 14px;
     background-color: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    z-index: 9999;
 }
 
 .navbar .left .home {

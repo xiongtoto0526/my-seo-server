@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 // i18n config
 let html = '';
-const mock_article_list = require('./mock/data.js');
+const {mock_index_list,mock_article_list} = require('./mock/data.js');
 const ALL_LANG = require('./constants/i18n.js');
 ALL_LANG.forEach(ele => {
     html += `<a href="/lang/${ele.key}">${ele.value}</a>`
@@ -42,12 +42,7 @@ app.use(i18nMiddleware);
 // router: index
 app.get('/', (req, res) => {
     //   const response = await axios.get(`https://dev.webpiloteai.com/articles/${id}`);
-    const articles = [
-        { title: 'Article 111', url: '/article/id1' },
-        { title: 'Article 2', url: '/article/id2' },
-        { title: 'Article 3', url: '/article/id3' },
-        // ...
-    ];
+    articles = mock_index_list
     res.render('index', { articles, html });
 });
 
