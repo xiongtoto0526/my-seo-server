@@ -64,6 +64,7 @@ app.get('/', async (req, res, next) => {
 
 });
 
+// for test: http://localhost:3000/article/4604d009-94c1-4bce-bf3a-1f14487f0666
 // router: article
 app.get('/article/:id', async (req, res, next) => {
     try {
@@ -71,9 +72,9 @@ app.get('/article/:id', async (req, res, next) => {
         const { id } = req.params;
         const host = getDomain(req)
         const response = await axios.get(`${host}/long/${id}/content`);
-        const article_data = response.data;
-        let temp_article = JSON.parse(JSON.stringify(mock_article_list))
-        const article = temp_article.find(article => article.id == id);
+        const article = response.data;
+        // let temp_article = JSON.parse(JSON.stringify(mock_article_list))
+        // const article = temp_article.find(article => article.id == id);
 
         // 转换为html
         article.content = Markdown({
@@ -89,6 +90,7 @@ app.get('/article/:id', async (req, res, next) => {
         }).render(article.content);
         res.render('article', { article, html });
     } catch (error) {
+        console.log(error)
         next(error)
     }
 
