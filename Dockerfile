@@ -21,10 +21,3 @@ EXPOSE 3000
 
 # 使用pm2运行你的应用
 CMD [ "pm2-runtime", "start", "app.js" ]
-
-
-# # 在开发环境中运行容器
-# docker run -e NODE_ENV=dev -p 3000:3000 -d your-image
-
-# # 在生产环境中运行容器
-# docker run -e NODE_ENV=production -p 3000:3000 -d your-image

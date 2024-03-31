@@ -1,19 +1,20 @@
-const getDomain = () => {
-    if (isLocal()) {
+const getDomain = (req) => {
+    const host = req.get('host')
+    if (isLocal(host)) {
         return "https://dev.webpilotai.com/rupee/v1"
     }
-    else if (isDev()) {
+    else if (isDev(host)) {
         return "https://dev.webpilotai.com/rupee/v1"
     }
     return "https://api.webpilotai.com/rupee/v1"
 }
 
-const isLocal = () => {
-    return process.env.NODE_ENV === 'local';
+const isLocal = (host) => {
+    return host === 'localhost:3000' || '127.0.0.1:3000';
 }
 
-const isDev = () => {
-    return process.env.NODE_ENV === 'development';
+const isDev = (host) => {
+    return host === 'dev.webpilotai.com';
 }
 
 module.exports = {

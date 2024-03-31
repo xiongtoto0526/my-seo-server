@@ -13,8 +13,6 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(cookieParser());
 
-process.env.NODE_ENV = 'local';
-
 // i18n config
 let html = '';
 const { mock_index_list, mock_article_list } = require('./mock/data.js');
@@ -45,7 +43,7 @@ app.use(i18nMiddleware);
 app.get('/', async (req, res, next) => {
     try {
         const page = req.query.page;
-        const host = getDomain();
+        const host = getDomain(req);
         const page_size = 10;
         const response = await axios.get(`${host}/long/picks`, { params: { page_num: page, page_size } });
         const articles = response.data;
@@ -71,7 +69,7 @@ app.get('/article/:id', async (req, res, next) => {
     try {
         // 获取文章
         const { id } = req.params;
-        const host = getDomain()
+        const host = getDomain(req)
         const response = await axios.get(`${host}/long/${id}/content`);
         const article_data = response.data;
         let temp_article = JSON.parse(JSON.stringify(mock_article_list))
