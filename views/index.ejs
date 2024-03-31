@@ -134,7 +134,7 @@
             <ul>
                 <% articles.forEach(function(article){ %>
                     <li>
-                        <a class="pick" href="https://www.webpilot.ai/writeDetail/<%= article.id %>">
+                        <a class="pick" href="/article/<%= article.id %>">
                             <div class="title">
                                 <%= article.title %>
                             </div>
@@ -164,7 +164,7 @@
 
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var page = Number(urlParams.get('page')) || 1;
+    var page = Number(urlParams.get('page')) || 0;
     document.getElementById('more-link').addEventListener('click', function (e) {
         e.preventDefault();
         page++;
@@ -172,5 +172,6 @@
         window.location.href = this.href;
     });
 </script>
+<%- hideMoreScript %>
 
 </html>
