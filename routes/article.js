@@ -17,7 +17,7 @@ router.get('/:id', async (req, res, next) => {
         const article = response.data;
 
         // 转换为html
-        article.content = Markdown({
+        const md = Markdown({
             highlight: (str, lang) => {
                 const code = lang && hljs.getLanguage(lang)
                     ? hljs.highlight(str, {
@@ -28,6 +28,7 @@ router.get('/:id', async (req, res, next) => {
                 return `<pre class="hljs"><code>${code}</code></pre>`;
             },
         }).render(article.content);
+        article.content = md
         res.render('article', { article, html });
     } catch (error) {
         console.log(error)

@@ -63,4 +63,4 @@ const mock_article_list = [
   { id: "id3", title: "Article 3", content: markdownConst, keywords: "keyword3", description: "Description1" },
 ];
 
-module.exports = { mock_index_list, mock_article_list };
+module.exports = { mock_index_list, markdownConst, mock_article_list };
