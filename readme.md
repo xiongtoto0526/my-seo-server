@@ -13,7 +13,7 @@ express + ejs
 | mock       | 模拟数据|
 | views    | 路由模版|
 | constants | 常量定义|
-| styles    | 公共样式|
+| routes | 路由定义|
 | utils     | 公共方法||
 
 
